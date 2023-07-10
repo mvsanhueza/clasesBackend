@@ -1,0 +1,21 @@
+{
+  "name": "clase-25",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start:dev": "node src/app.js -m dev",
+    "start:test": "node src/app.js -m test",
+    "start:prod": "node index.js mode=prod debug=true port=8080"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^11.0.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.3.2"
+  }
+}
