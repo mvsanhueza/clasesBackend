@@ -1,0 +1,58 @@
+paths:
+  /api/users:
+    get:
+      summary: Obtener todos los usuarios de la BD.
+      responses: 
+        "200": 
+          description: Si la consulta a los usuarios es satisfactoria. 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersResponses'
+        "500":
+          description: Si hubo un error en el momento de la consulta
+
+  /api/users/{userId}:
+    get:
+      summary: Obtener un usuario por su ID.      
+    put:
+      summary: Actualizar un usuario por un parametro BD
+      tags:
+        - Users
+      responses:  
+        - name: userId
+          in: paths
+
+    delete:
+components:
+  schemas:
+    User: 
+      type: Object
+      properties:
+        _id: 
+          type: ObjectId
+          description: ID auto incrementable de mongo
+        first_name:
+          type: string
+          description: Nombre del usuarios
+        last_name:
+          type: string
+          description: Apellido del usuario
+      example:
+        _id: ObjectId(123fdad56)
+        first_name: Matias
+        last_name: Sanhueza
+    
+    UsersResponses:
+      type: Object
+      properties:
+        status: 
+          type: string
+          enum: [success, error]
+          description: formas de respuesta
+        payload:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+
+        
