@@ -1,0 +1,73 @@
+components:
+  requestBodies: 
+    createUserDTO:
+      type: object
+      properties:
+        first_name: 
+          type: string
+          description: User's first name
+        last_name: 
+          type: string
+          description: User's last name
+        email: 
+          type: string
+          description: User's email
+      example:
+        first_name: Prueba
+        last_name: Coder
+        email: prueba@coder.com
+  Schemas: 
+    User: 
+      type: object
+      properties: 
+        _id: 
+          type: ObjectId
+          description: Autogenerate ID Mongo DB
+        first_name: 
+          type: string
+          description: User's first name
+        last_name: 
+          type: string
+          description: User's last name
+        email: 
+          type: string
+          description: User's email
+      example: 
+        _id: 1234abc45
+        first_name: Prueba
+        last_name: Coder
+        email: prueba@coder.com
+
+paths: 
+  /api/users:
+    get: 
+      summary: Get all Users
+      tags: 
+        - Users
+      responses:
+        "200": 
+          decription:  Users were fetched succesfully
+          content: 
+            application/json:
+              schema: 
+                type: array 
+                item: 
+                  $ref: '#/components/Schemas/User'
+    post:
+      summary: Creates a new users into DB
+      tags: 
+        - Users
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema: 
+              $ref: '#/components/requestBodies/createUserDTO'
+      response:
+        "201": 
+          description: Users created succesfully in the DB
+          content:
+            application/json: 
+              schema: 
+                $ref: '#/components/Schemas/User'
+  
